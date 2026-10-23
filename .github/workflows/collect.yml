@@ -1,0 +1,38 @@
+name: collect
+on:
+  schedule:
+    - cron: '23 * * * *'   # щогодини о :23 (UTC)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: collect
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      # без сторонніх actions: лише git і node, що вже є на сервері GitHub
+      - name: Код збирача (гілка main)
+        run: |
+          git clone --depth 1 --branch main "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" code
+      - name: Попередній стан (гілка data)
+        run: |
+          mkdir -p out
+          if git clone --depth 1 --branch data "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" prev 2>/dev/null; then
+            cp prev/pool-accum.json prev/released-history.json out/ 2>/dev/null || true
+          fi
+      - name: Збір
+        env:
+          LUMO_OUT: ${{ github.workspace }}/out
+        run: node code/collector/run.js
+      - name: Запис у гілку data (один коміт, без історії)
+        run: |
+          cd out
+          git init -q -b data
+          git config user.name "lumo-collector"
+          git config user.email "lumo-collector@users.noreply.github.com"
+          git add -A
+          git commit -q -m "збір $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" data

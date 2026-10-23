@@ -30,7 +30,7 @@ const FEEDS = [
   ['oilprice', 'OilPrice', 'Енергетика і сировина', 'rss', 'https://oilprice.com/rss/main', 12, 'main'],
   ['africanews', 'Africanews', 'Африка', 'rss', 'https://www.africanews.com/feed/rss', 24, 'main'],
   ['mercopress', 'MercoPress', 'Лат. Америка', 'rss', 'https://en.mercopress.com/rss', 48, 'main'],
-  ['fxstreet', 'FXStreet', 'Ринки і макро', 'rss', 'https://www.fxstreet.com/rss/news', 6, 'main'],
+  ['fxstreet', 'FXStreet', 'Ринки і макро', 'rss', ['https://www.fxstreet.com/rss/news', 'gnews:fxstreet.com'], 6, 'main'], // v79: сервери GitHub отримують 403 → запасний Google News
   ['investing', 'Investing.com', 'Ринки і макро', 'rss', 'https://www.investing.com/rss/news.rss', 12, 'main'],
   ['fed', 'ФРС (прес-релізи)', 'Ринки і макро', 'rss', 'https://www.federalreserve.gov/feeds/press_all.xml', 240, 'main'],
   ['ecb', 'ЄЦБ (прес-релізи)', 'Ринки і макро', 'rss', 'https://www.ecb.europa.eu/rss/press.html', 240, 'main'],
@@ -53,7 +53,7 @@ const FEEDS = [
   ['dw', 'DW', 'Європа', 'rss', 'https://rss.dw.com/rdf/rss-en-all', 6, 'main'],
   ['politico', 'Politico Europe', 'Європа', 'rss', 'https://www.politico.eu/feed/', 12, 'extra'],
   ['france24', 'France24', 'Світ', 'rss', 'https://www.france24.com/en/rss', 6, 'extra'],
-  ['toi', 'Times of Israel', 'Близький Схід', 'rss', 'https://www.timesofisrael.com/feed/', 6, 'extra'],
+  ['toi', 'Times of Israel', 'Близький Схід', 'rss', ['https://www.timesofisrael.com/feed/', 'gnews:timesofisrael.com'], 6, 'extra'], // v79: 403 із хмари → Google News
   ['scmp', 'South China Morning Post', 'Азія', 'rss', 'https://www.scmp.com/rss/91/feed', 12, 'main'],
   ['cna', 'CNA (Сінгапур)', 'Азія', 'rss', 'https://www.channelnewsasia.com/rssfeeds/8395986', 12, 'extra'],
   ['japantimes', 'The Japan Times', 'Азія', 'rss', 'https://www.japantimes.co.jp/feed/', 12, 'main'],
@@ -365,6 +365,44 @@ function accCover(A, src, nowMs, covH) { // покриття доби з ура�
 function accOldest() { const o = {}; try { accLoad().items.forEach(x => { if (x.t && (!o[x.src] || x.t < o[x.src])) o[x.src] = x.t; }); } catch (e) {} return o; }
 function accNewest() { const o = {}; try { accLoad().items.forEach(x => { if (x.t && (!o[x.src] || x.t > o[x.src])) o[x.src] = x.t; }); } catch (e) {} return o; } // 23.10 аудит-3: для пошуку діри після паузи
 let _colP = null, _colLast = null;
+// v79 (23.10.2026): ХМАРНИЙ ЗБИРАЧ — GitHub Actions щогодини збирає ті самі стрічки в гілку data сховища lumo-news.
+// Lumo лише ЧИТАЄ ці файли; кожен запис перевіряється (відома стрічка, https, довжини, час); нічого звідти не виконується.
+const CLOUD_RAW = 'https://raw.githubusercontent.com/neiromail10-maker/lumo-news/data/';
+let _cloudLast = 0, _cloudInfo = null, _cloudP = null;
+const cS = (v, n) => typeof v === 'string' ? v.slice(0, n) : '';
+function cloudGet(name) { return new Promise(res => fetchFeedText(CLOUD_RAW + name + '?t=' + Date.now(), (t, st) => res(t ? { ok: true, t } : { ok: false, st }), 0, true)); }
+function cloudItem(x, nowMs, FID) { if (!x || typeof x !== 'object') return null; const fd = FID.get(x.src); if (!fd) return null;
+  const url = cleanUrl(x.url); if (!/^https:\/\//.test(url)) return null; const title = cS(x.title, 400).trim(); if (!title) return null;
+  const t = Number.isFinite(x.t) ? x.t : null; const cal = x.cal === true;
+  if (!t) return null; if (t < nowMs - 100 * 3600000 || t > nowMs + (cal ? 9 * 86400000 : 3600000)) return null;
+  const o = { src: fd[0], srcName: fd[1], topic: fd[2], role: fd[6], title, desc: cS(x.desc, 700), url, t, cal, impact: /^(High|Medium|Low)$/.test(x.impact || '') ? x.impact : '', level: cS(x.level, 20) };
+  if (x.rel && typeof x.rel === 'object') o.rel = { actual: cS(x.rel.actual, 30), consensus: cS(x.rel.consensus, 30), previous: cS(x.rel.previous, 30) };
+  if (Array.isArray(x.also)) { const al = x.also.slice(0, 20).map(a => { const f2 = a && FID.get(a.src); const u2 = f2 && cleanUrl(a.url); return f2 && /^https:\/\//.test(u2) ? { src: f2[0], srcName: f2[1], url: u2 } : null; }).filter(Boolean); if (al.length) o.also = al; }
+  return o; }
+function relMergeCloud(arr) { const items = relRead(); const byK = new Map(items.map(x => [x.key, x])); let n = 0;
+  arr.forEach(x => { if (!x || typeof x !== 'object' || typeof x.key !== 'string' || !Number.isFinite(x.t) || typeof x.actual !== 'string' || !x.actual) return; const k = cS(x.key, 200); if (byK.has(k)) return;
+    byK.set(k, { key: k, t: x.t, country: cS(x.country, 40), what: cS(x.what, 160), impact: x.impact === 'High' ? 'High' : 'Medium', actual: cS(x.actual, 30), consensus: cS(x.consensus, 30), previous: cS(x.previous, 30), url: /^https:\/\//.test(String(x.url || '')) ? cS(x.url, 300) : '', seen: Date.now(), cloud: true }); n++; });
+  if (!n) return 0; const out = [...byK.values()].sort((a, b) => b.t - a.t).slice(0, 4000);
+  const fp = relFile(); fs.mkdirSync(path.dirname(fp), { recursive: true }); fs.writeFileSync(fp + '.tmp', JSON.stringify({ updated: new Date().toISOString(), source: 'Myfxbook RSS', items: out })); fs.renameSync(fp + '.tmp', fp); return n; }
+function cloudPull(force) { if (_cloudP) return _cloudP; if (!force && Date.now() - _cloudLast < 20 * 60000) return Promise.resolve(_cloudInfo);
+  _cloudLast = Date.now();
+  _cloudP = (async () => { const info = { at: new Date().toISOString(), ok: false };
+    try { const nowMs = Date.now(); const FID = new Map(FEEDS.map(f => [f[0], f]));
+      const st = await cloudGet('status.json'); if (st.ok) { try { const j = JSON.parse(st.t); info.updated = cS(j.updated, 40); info.feedsOk = +((j.feeds || {}).ok) || 0; info.feedsTotal = +((j.feeds || {}).total) || 0; } catch (e) {} }
+      const p = await cloudGet('pool-accum.json');
+      if (!p.ok) info.error = 'файл не відкрився (' + p.st + ')';
+      else { let j = null; try { j = JSON.parse(p.t); } catch (e) {}
+        if (!j || !Array.isArray(j.items)) info.error = 'файл пошкоджений';
+        else { const items = j.items.slice(0, 20000).map(x => cloudItem(x, nowMs, FID)).filter(Boolean); const before = accLoad().items.length;
+          const A = accMerge({ at: new Date().toISOString(), pool: items }); info.ok = true; info.got = items.length; info.added = Math.max(0, A.items.length - before); info.dropped = j.items.length - items.length; } }
+      const h = await cloudGet('released-history.json'); if (h.ok) { try { const j = JSON.parse(h.t); info.released = relMergeCloud(Array.isArray(j.items) ? j.items.slice(0, 5000) : []); } catch (e) {} }
+    } catch (e) { info.error = String(e && e.message || e).slice(0, 120); }
+    _cloudInfo = info; _colLast = null;
+    try { newsLog('☁️ Хмарний збирач: ' + (info.ok ? 'отримано ' + info.got + ', нових у накопичувачі ' + info.added + (info.released ? ', нових даних ' + info.released : '') + (info.updated ? ' · останній збір у хмарі ' + dgKyivF(Date.parse(info.updated)) : '') : 'збій — ' + (info.error || '?'))); } catch (e) {}
+    return info; })().finally(() => { _cloudP = null; });
+  return _cloudP; }
+const cloudWait = ms => Promise.race([cloudPull(true).catch(() => null), new Promise(r => setTimeout(() => r(null), ms))]);
+
 function collectShared(winH, maxAgeMs) { // 22.10 аудит Г: хто прийшов другим — чекає першого; свіжий (≤ maxAge) результат — повторно
   if (_colP) return _colP; if (_colLast && Date.now() - _colLast.ms < (maxAgeMs || 0) && _colLast.winH >= winH) return Promise.resolve(_colLast.r);
   const now = Date.now(); _colP = collectFeeds(now, winH, null, 25, { accOld: accOldest(), accNew: accNewest() }).then(r => { let A = null; try { A = accMerge(r); } catch (e) { newsLog('⚠ накопичувач: ' + String(e.message || e).slice(0, 120)); } r.acc = A; _colLast = { ms: Date.now(), winH, r }; return r; }).finally(() => { _colP = null; });

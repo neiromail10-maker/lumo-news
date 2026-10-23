@@ -1,0 +1,98 @@
+{
+ "fxstreet-cal": {
+  "st": 200,
+  "len": 56128,
+  "hasActual": true,
+  "sample": "[{\"id\":\"b969b91f-6d1a-4e8d-a227-8c3755f91ff2\",\"eventId\":\"19414d34-58bc-47d5-ac6e-6200ca9da9f7\",\"dateUtc\":\"2026-10-22T01:00:00Z\",\"periodDateUtc\":null,\"periodType\":null,\"actual\":3.000,\"revised\":null,\"consensus\":3.000,\"ratioDeviation\":0.00000,\"previous\":3.000,\"isBetterThanExpected\":null,\"name\":\"BoK Interest Rate Decision\",\"countryCode\":\"KR\",\"currencyCode\":\"KRW\",\"unit\":\"%\",\"potency\":\"ZERO\",\"volatility\":\"MEDIUM\",\"isAllDay\":false,\"isTentative\":false,\"isPreliminary\":false,\"isReport\":false,\"isSpeech\":false,\"lastUpdated\":1792630794,\"previousIsPreliminary\":false,\"categoryId\":\"9c4a731a-d993-4d55-89f3-dc7"
+ },
+ "nasdaq": {
+  "st": 200,
+  "len": 31740,
+  "hasActual": true,
+  "sample": "{\"data\":{\"asOf\":\"Fri, Oct 23, 2026\",\"headers\":{\"gmt\":\"Time\",\"country\":\"Country\",\"eventName\":\"Event\",\"actual\":\"Actual\",\"consensus\":\"Consensus\",\"previous\":\"Previous\",\"description\":\"Description\"},\"rows\":[{\"gmt\":\"00:15\",\"country\":\"Euro Zone\",\"eventName\":\"ECB's Lane Speaks\",\"actual\":\"&nbsp;\",\"consensus\":\" \",\"previous\":\"&nbsp;\",\"description\":\"Philip R. Lane, member of the Executive Board of the European Central Bank, is set to speak. His speeches often contain indications on the future possible direction of monetary policy.\"},{\"gmt\":\"02:00\",\"country\":\"United Kingdom\",\"eventName\":\"Core CPI\",\"actual\":"
+ },
+ "tradingecon": {
+  "st": 410,
+  "len": 214,
+  "hasActual": false,
+  "sample": "<p>We are sorry, but the guest account has been discontinued.</p> <p>Please subscribe to a plan at <a href=\"https://tradingeconomics.com/api/pricing.aspx\"> https://tradingeconomics.com/api/pricing.aspx</a>.</p>"
+ },
+ "investing-widget": {
+  "st": 403,
+  "len": 3,
+  "hasActual": false,
+  "sample": "403"
+ },
+ "myfxbook-rss": {
+  "st": 403,
+  "len": 6132,
+  "hasActual": false,
+  "sample": "<!DOCTYPE html> <!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 7]> <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 8]> <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]--> <!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!--<![endif]--> <head> <title>Attention Required! | Cloudflare</title> <meta charset=\"UTF-8\" /> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\" /> <meta name=\"robots\" content=\"noindex, nofollow\" /> <meta name=\"viewport\" content=\"wid"
+ },
+ "myfxbook-page": {
+  "st": 403,
+  "len": 6132,
+  "hasActual": false,
+  "sample": "<!DOCTYPE html> <!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 7]> <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 8]> <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]--> <!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!--<![endif]--> <head> <title>Attention Required! | Cloudflare</title> <meta charset=\"UTF-8\" /> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\" /> <meta name=\"robots\" content=\"noindex, nofollow\" /> <meta name=\"viewport\" content=\"wid"
+ },
+ "ff-json": {
+  "st": 200,
+  "len": 11604,
+  "hasActual": false,
+  "sample": "[{\"title\":\"IMF Meetings\",\"country\":\"All\",\"date\":\"2026-10-18T10:15:00-04:00\",\"impact\":\"Low\",\"forecast\":\"\",\"previous\":\"\"},{\"title\":\"BusinessNZ Services Index\",\"country\":\"NZD\",\"date\":\"2026-10-18T17:30:00-04:00\",\"impact\":\"Low\",\"forecast\":\"\",\"previous\":\"51.2\"},{\"title\":\"Trade Balance\",\"country\":\"NZD\",\"date\":\"2026-10-18T17:45:00-04:00\",\"impact\":\"Low\",\"forecast\":\"-775M\",\"previous\":\"-1349M\"},{\"title\":\"Rightmove HPI m\\/m\",\"country\":\"GBP\",\"date\":\"2026-10-18T19:01:00-04:00\",\"impact\":\"Low\",\"forecast\":\"\",\"previous\":\"0.7%\"},{\"title\":\"RBA Assist Gov Kent Speaks\",\"country\":\"AUD\",\"date\":\"2026-10-18T19:05:00-04"
+ },
+ "investing-rss-cal": {
+  "st": 200,
+  "len": 4790,
+  "hasActual": false,
+  "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <rss version=\"2.0\"> <channel> <title>Economic Indicators News</title> <link>https://www.investing.com</link> <item> <enclosure url=\"https://content-media.investing.com/trkd-images/LYNXMPEM9M0DZ_L.jpg\" length=\"44162\" type=\"image/jpeg\"/> <title>Exclusive-First Russian diesel from Putin-Trump deal heading for US, data shows</title> <pubDate>2026-10-23 17:36:29</pubDate> <author>Reuters</author> <link>https://www.investing.com/news/economic-indicators/exclusivetanker-carrying-40000-t-of-russian-diesel-heads-to-new-york-after-putintrump-deal-data-shows-4968099"
+ },
+ "fxstreet-rss-cal": {
+  "st": 403,
+  "len": 5821,
+  "hasActual": false,
+  "sample": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-URo16RHlUNlui9e4peAq0h&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-src-attr &#39;none&#39;; style-src &#39;unsafe-inline&#39;; img-src &#39;self&#39; https://challenges"
+ },
+ "marketwatch-cal": {
+  "st": 401,
+  "len": 462,
+  "hasActual": false,
+  "sample": "{\"url\":\"https://geo.captcha-delivery.com/interstitial/?initialCid=AHrlqAAAAAMAUwFNJTP8KYUAFKFD0w==&cid=Vy3LSfuiN~gfUeg9b7iudTX8a5qPySYfLf_iTy2_j6qjGfHUt2Nlv45v6CKEoFP4bg2wU9nNA4lnlhMpF5OtHZSP1I9RIgpMDmugG0Y9WiQ3AUft2_kI6YvP3m6YAfdA&referer=http%3A%2F%2Fwww.marketwatch.com%2Feconomy-politics%2Fcalendar&hash=D428D51E28968797BC27FB9153435D&t=it&s=47891&e=b2ffeaa59122f351631c08ab8c9fa25f51cbccecc8bf81096f45baa9b778eb52c49cbec8cc285746850eda0d16ebd5a5&b=2461432\"}"
+ },
+ "econoday": {
+  "st": 200,
+  "len": 46465,
+  "hasActual": true,
+  "sample": " <!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"/> <meta name=\"google\" content=\"notranslate\"> <meta name=\"verify-v1\" content=\"mv+ZAGeOLvsVZ/2k9NwfhbNtJu7RjzmBceOgUG/TWTY=\" /> <title>2026 Economic Calendar</title> <meta name=\"author\" content=\"Econoday Inc.\"/> <meta name=\"copyright\" content=\"copyright 2026 Econoday Inc.\"/> <meta xmlns=\"\" name=\"Keywords\" content=\"Economic Calendars, FOREX, International, United States, Market Moving, Economic Events, Forecast, Actual, Market Experts, Revised Forecast, FOMC, Unemployment Rate, GDP, Consumer Confidence, Durable Orders, Existing Home S"
+ },
+ "bls-rss": {
+  "st": 403,
+  "len": 1325,
+  "hasActual": false,
+  "sample": "<!DOCTYPE HTML> <html lang=\"en-us\"> <head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> <title>Access Denied</title> </head> <style type=\"text/css\"> .centerDiv { width: 60%; height:200px; margin: 0 auto; background-color:#FFFFFF ; } </style> <body> <div class=\"centerDiv\"> <h1><a href=https://www.bls.gov><!--img src=\"/apology_objects/images/01.jpg\" border=\"0\"--></a><span style=\"font-family: Times, serif; color: #990000; font-size: 38px;\">Bureau of Labor Statistics</span></h1> <h2>Access Denied</h2> <p>The BLS is committed to providing data promptly and according to esta"
+ },
+ "ecb-rss": {
+  "st": 200,
+  "len": 5703,
+  "hasActual": false,
+  "sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\"><channel> <title>ECB - European Central Bank</title><link>https://www.ecb.europa.eu/</link><description>Latest releases on the ECB website - Press releases, speeches and interviews, press conferences.</description><language>en</language><copyright>Copyright 2026, European Central Bank</copyright> <webMaster>webmaster@ecb.europa.eu (ECB Webmaster)</webMaster><lastBuildDate>Fri, 23 Oct 2026 14:05:26 +0200</lastBuildDate> <category>Press</category> <generator>Automatic</generator> <docs>http://blogs"
+ },
+ "fred-api": {
+  "st": 400,
+  "len": 248,
+  "hasActual": false,
+  "sample": "<?xml version=\"1.0\" encoding=\"utf-8\" ?> <error code=\"400\" message=\"Bad Request. The value for variable api_key is not a 32 character alpha-numeric lower-case string. Read https://fred.stlouisfed.org/docs/api/api_key.html for more information.\" />"
+ },
+ "tradays": {
+  "st": 404,
+  "len": 28270,
+  "hasActual": false,
+  "sample": "<!DOCTYPE html> <html lang=\"en\"> <head> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0\"> <meta http-equiv=\"x-dns-prefetch-control\" content=\"on\"> <link rel=\"dns-prefetch\" href=\"https://c.mql5.com\"> <meta name=\"theme-color\" content=\"#4a76b8\"> <meta name=\"format-detection\" content=\"telephone=no\"> <link rel=\"manifest\" href=\"https://www.mql5.com/manifest.json\"> <link rel=\"apple-touch-icon\" sizes=\"57x57\" href=\"https://www.mql5.com/apple-t"
+ },
+ "ft-calendar": {
+  "st": 403,
+  "len": 270638,
+  "hasActual": false,
+  "sample": "<!DOCTYPE html> <html lang=\"en-GB\"><head><meta charset=\"utf-8\"/><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><title>Security Verification</title><style>:root{--o3-icon-info: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M512 810.667C676.949 810.667 810.667 676.949 810.667 512C810.667 347.051 676.949 213.333 512 213.333C347.051 213.333 213.333 347.051 213.333 512C213.333 676.949 347.051 810.667 512 810.667ZM512"
+ }
+}

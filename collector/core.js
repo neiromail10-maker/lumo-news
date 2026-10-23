@@ -35,7 +35,7 @@ const FEEDS = [
   ['fed', 'ФРС (прес-релізи)', 'Ринки і макро', 'rss', 'https://www.federalreserve.gov/feeds/press_all.xml', 240, 'main'],
   ['ecb', 'ЄЦБ (прес-релізи)', 'Ринки і макро', 'rss', 'https://www.ecb.europa.eu/rss/press.html', 240, 'main'],
   ['ffcal', 'ForexFactory (календар)', 'Календар', 'ff', 'https://nfs.faireconomy.media/ff_calendar_thisweek.xml', 0, 'main'],
-  ['myfxbook', 'Myfxbook (факти даних)', 'Календар', 'mfx', 'https://www.myfxbook.com/rss/forex-economic-calendar-events', 0, 'main'], // v78: що ВЖЕ вийшло (факт / прогноз / було) — лише сьогоднішні події, тож пишемо в історію
+  ['fxcal', 'FXStreet (факти даних)', 'Календар', 'fxcal', 'https://calendar-api.fxstreet.com/en/api/v1/eventDates/{FROM}/{TO}', 0, 'main'], // v80: факт / прогноз / було за 48 год; відкривається і з Mac, і з GitHub (Myfxbook блокує хмару) // v78: що ВЖЕ вийшло (факт / прогноз / було) — лише сьогоднішні події, тож пишемо в історію
   ['gdacs', 'GDACS (катастрофи)', 'Катастрофи', 'gdacs', 'https://www.gdacs.org/xml/rss.xml', 0, 'main'],
   ['usgs', 'USGS (землетруси)', 'Катастрофи', 'rss', 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.atom', 0, 'main'],
   ['coindesk', 'CoinDesk', 'Крипто', 'rss', 'https://www.coindesk.com/arc/outboundfeeds/rss/', 12, 'main'],
@@ -70,7 +70,7 @@ function fetchFeedText(url, cb, depth, plain) { // як fetchText, але з «�
   if ((depth || 0) > 4) return done(null, 'redirect');
   let req;
   try {
-    req = https.get(url, { headers: plain ? { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36', 'Accept': '*/*' } : { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Lumo/64 RSS-reader', 'Accept': 'application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.9, text/html;q=0.8, */*;q=0.5', 'Accept-Language': 'en,uk;q=0.8' } }, res => {
+    req = https.get(url, { headers: Object.assign(/^https:\/\/calendar-api\.fxstreet\.com\//.test(url) ? { 'Origin': 'https://www.fxstreet.com', 'Referer': 'https://www.fxstreet.com/' } : {}, plain ? { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36', 'Accept': '*/*' } : { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Lumo/64 RSS-reader', 'Accept': 'application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.9, text/html;q=0.8, */*;q=0.5', 'Accept-Language': 'en,uk;q=0.8' }) }, res => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         res.resume(); let next = ''; try { next = new URL(res.headers.location, url).href; } catch (e) {}
         if (!/^https:\/\//.test(next)) return done(null, res.statusCode);
@@ -123,6 +123,16 @@ function parseFeed(text, type, baseUrl) {
       const tx = stripTags((b.match(/class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)<\/div>/) || [])[1] || '');
       if (post && tx) out.push({ title: tx.slice(0, 220), desc: tx.slice(0, 600), url: 'https://t.me/' + post, t: dt ? Date.parse(dt) : NaN });
     });
+    return out;
+  }
+  if (type === 'fxcal') { // v80: FXStreet calendar API (JSON): actual / consensus / previous, volatility HIGH|MEDIUM|LOW
+    let arr = null; try { arr = JSON.parse(String(text)); } catch (e) { return out; } if (!Array.isArray(arr)) return out;
+    const CC = { US: 'United States', EMU: 'Euro Area', EU: 'European Union', DE: 'Germany', UK: 'United Kingdom', GB: 'United Kingdom', FR: 'France', IT: 'Italy', ES: 'Spain', JP: 'Japan', CN: 'China', CA: 'Canada', AU: 'Australia', NZ: 'New Zealand', CH: 'Switzerland', IN: 'India', KR: 'South Korea', TR: 'Turkey', PL: 'Poland', UA: 'Ukraine', BR: 'Brazil', MX: 'Mexico', NO: 'Norway', SE: 'Sweden' };
+    const fmt = (v, u) => v == null || v === '' || !isFinite(+v) ? '' : String(+(+v).toFixed(3)) + (u ? (u === '%' ? '%' : ' ' + u) : '');
+    arr.slice(0, 3000).forEach(e => { if (!e || typeof e !== 'object') return; const vol = String(e.volatility || '').toUpperCase(); if (vol !== 'HIGH' && vol !== 'MEDIUM') return;
+      const t = Date.parse(e.dateUtc); if (!isFinite(t)) return; const ctry = CC[String(e.countryCode || '').toUpperCase()] || String(e.countryCode || ''); const name = String(e.name || '').slice(0, 160); if (!name) return;
+      const u = String(e.unit || '').slice(0, 6); const rel = { actual: fmt(e.actual, u), consensus: fmt(e.consensus, u), previous: fmt(e.revised != null ? e.revised : e.previous, u) };
+      out.push({ title: (ctry ? ctry + ' ' : '') + name, desc: dgKyivF(t) + ' за Києвом · факт ' + (rel.actual || '—') + ' · прогноз ' + (rel.consensus || '—') + ' · було ' + (rel.previous || '—'), url: 'https://www.fxstreet.com/economic-calendar#' + String(e.id || e.eventId || t).replace(/[^\w-]/g, '').slice(0, 60), t, impact: vol === 'HIGH' ? 'High' : 'Medium', cal: true, rel }); });
     return out;
   }
   if (type === 'mfx') { // v78: Myfxbook RSS — таблиця Previous / Consensus / Actual у description (HTML-екрановано)
@@ -235,7 +245,7 @@ function relSave(kept) { const add = kept.filter(x => x.rel && x.rel.actual && x
   add.forEach(x => { const sp = relSplit(x.title); const key = x.title + '|' + new Date(x.t).toISOString().slice(0, 16); const o = byK.get(key) || {};
     byK.set(key, Object.assign(o, { key, t: x.t, country: sp.country, what: sp.what, impact: x.impact, actual: x.rel.actual, consensus: x.rel.consensus, previous: x.rel.previous, url: x.url, seen: o.seen || Date.now() })); });
   const out = [...byK.values()].sort((a, b) => b.t - a.t).slice(0, 4000);
-  const fp = relFile(); fs.mkdirSync(path.dirname(fp), { recursive: true }); fs.writeFileSync(fp + '.tmp', JSON.stringify({ updated: new Date().toISOString(), source: 'Myfxbook RSS', items: out })); fs.renameSync(fp + '.tmp', fp); }
+  const fp = relFile(); fs.mkdirSync(path.dirname(fp), { recursive: true }); fs.writeFileSync(fp + '.tmp', JSON.stringify({ updated: new Date().toISOString(), source: 'FXStreet calendar (з 23.10.2026; раніше Myfxbook)', items: out })); fs.renameSync(fp + '.tmp', fp); }
 const REL_UA = [[/Non ?Farm Payrolls/i, 'Нові робочі місця (NFP)'], [/Initial Jobless Claims/i, 'Нові заявки на допомогу з безробіття'], [/Continuing Jobless Claims/i, 'Повторні заявки з безробіття'], [/Unemployment Rate/i, 'Безробіття'], [/Interest Rate Decision/i, 'Рішення щодо ставки'], [/Michigan Consumer Sentiment/i, 'Настрої споживачів Мічигану'], [/Michigan (\d+)-Year Inflation Expectations/i, 'Інфляційні очікування Мічигану на $1 р.'], [/Consumer Confidence/i, 'Споживча довіра'], [/Retail Sales/i, 'Роздрібні продажі'], [/Durable Goods Orders/i, 'Замовлення товарів тривалого користування'], [/Industrial Production/i, 'Промвиробництво'], [/Trade Balance/i, 'Торговий баланс'], [/Existing Home Sales/i, 'Продажі вторинного житла'], [/New Home Sales/i, 'Продажі нового житла'], [/Building Permits/i, 'Дозволи на будівництво'], [/Housing Starts/i, 'Закладки житла'], [/Ifo Business Climate/i, 'Бізнес-клімат Ifo'], [/ZEW Economic Sentiment/i, 'Настрої ZEW'], [/Core Inflation Rate/i, 'Базова інфляція'], [/Inflation Rate/i, 'Інфляція'], [/\bCore PCE Price Index\b/i, 'Базовий PCE (інфляція)'], [/\bPCE Price Index\b/i, 'PCE (інфляція)'], [/\bGDP Growth Rate\b/i, 'Зростання ВВП'], [/\bGDP\b/, 'ВВП'], [/\bCPI\b/, 'CPI (інфляція)'], [/\bPPI\b/, 'PPI (ціни виробників)'], [/Manufacturing PMI/i, 'PMI промисловості'], [/Services PMI/i, 'PMI послуг'], [/Composite PMI/i, 'PMI загальний'], [/\bFlash\b|\bPrel(im)?\b/gi, 'попер.'], [/\bMoM\b/g, 'м/м'], [/\bYoY\b/g, 'р/р'], [/\bQoQ\b/g, 'кв/кв']];
 function relUa(w) { let s0 = String(w || ''); REL_UA.forEach(([r, v]) => { s0 = s0.replace(r, v); }); return s0.replace(/\s+/g, ' ').trim(); }
 function relNum(v) { const m = String(v || '').replace(/,/g, '.').match(/-?\d+(?:\.\d+)?/); return m ? parseFloat(m[0]) : NaN; }
@@ -255,7 +265,7 @@ function collectFeeds(nowMs, winH, onlyIds, covHopt, opts) {
     const finish = (rep, items) => res({ rep: Object.assign({ id, name, topic, type, role, url: Array.isArray(url) ? url[0] : url, ms: Date.now() - t0 }, rep), items: items || [] });
     const urls = Array.isArray(url) ? url : [url];
     let usedHtml = false, usedG = false; const getText = (i, cb) => { const isH = /^html:/.test(urls[i]), isG = /^gnews:/.test(urls[i]);
-      const u = isG ? 'https://news.google.com/rss/search?q=site:' + urls[i].slice(6) + '+when:' + gDays + 'd&hl=en-US&gl=US&ceid=US:en' : urls[i].replace(/^html:/, '');
+      const fxI = t => new Date(t).toISOString().slice(0, 19) + 'Z'; const u = isG ? 'https://news.google.com/rss/search?q=site:' + urls[i].slice(6) + '+when:' + gDays + 'd&hl=en-US&gl=US&ceid=US:en' : urls[i].replace(/^html:/, '').replace('{FROM}', fxI(nowMs - 48 * 3600000)).replace('{TO}', fxI(nowMs));
       fetchFeedText(u, (t, s) => { let good = t && (isH || /<(item|entry)[\s>]/i.test(t));
         if (good && isH) { try { good = parseFeed(t, 'html', u).length > 0; } catch (e) { good = false; } } // сторінка без статей (захист від ботів) → далі
         if (good) { usedHtml = isH; usedG = isG; return cb(t, s, u); } if (i + 1 >= urls.length) return cb(t && !isH ? t : null, s, u); getText(i + 1, cb); }); };
@@ -282,19 +292,19 @@ function collectFeeds(nowMs, winH, onlyIds, covHopt, opts) {
         else if (isFinite(x.t)) { const dOnly = id === 'taipeitimes' && x.t % 86400000 === 57600000; if ((dOnly ? x.t + 86400000 : x.t) < fromMs) { old++; return; } if (x.t > nowMs + 3600000) { future++; x.t = NaN; } }
         kept.push({ src: id, srcName: name, topic, role, title: x.title, desc: x.desc, url: u, t: isFinite(x.t) ? x.t : null, cal: !!x.cal, impact: x.impact || '', level: x.level || '', rel: x.rel || undefined });
       });
-      if (type === 'mfx') try { relSave(kept); } catch (e) {} // v78: історія вийшлих даних
+      if (type === 'mfx' || type === 'fxcal') try { relSave(kept); } catch (e) {} // v78: історія вийшлих даних
       const ageH = isFinite(newest) ? (nowMs - newest) / 3600000 : null;
       const covFrom = nowMs - covH * 3600000; const cover = !dated.length ? null : (oldest <= covFrom ? 100 : Math.max(0, Math.round((nowMs - oldest) / (covH * 3600000) * 100)));
       let status = 'ok', why = [];
       if (normH && ageH != null && ageH > normH) { status = 'warn'; why.push('найсвіжіша — ' + Math.round(ageH) + ' год тому (норма ≤ ' + normH + ')'); }
-      if (normH && cover != null && cover < 60 && type !== 'ff' && type !== 'mfx') { status = 'warn'; why.push('покриває лише ' + cover + '% доби'); }
+      if (normH && cover != null && cover < 60 && type !== 'ff' && type !== 'mfx' && type !== 'fxcal') { status = 'warn'; why.push('покриває лише ' + cover + '% доби'); }
       if (usedHtml) why.push('взято зі сторінки сайту (стрічка недоступна)');
       if (usedG) why.push('через Google News (стрічка сайту недоступна)');
       if (gAdd) why.push('добрано з Google News: ' + gAdd + ' (стрічка коротка)'); if (gFail) why.push(gFail);
       if (future) why.push(future + ' з датою «в майбутньому» (часовий пояс) — дату не враховано');
       if (lowAlert) why.push('зелених тривог відсіяно: ' + lowAlert + ' (беремо лише 🟠/🔴)');
       if (noDate > items.length / 2) { status = 'warn'; why.push('у більшості новин нема дати'); }
-      if (old > 0 && dated.length && type !== 'ff' && type !== 'mfx' && old >= items.length * 0.5 && ageH != null && ageH > (normH || 24) * 4) { status = 'warn'; why.push('стрічка застигла: ' + old + ' старих новин'); }
+      if (old > 0 && dated.length && type !== 'ff' && type !== 'mfx' && type !== 'fxcal' && old >= items.length * 0.5 && ageH != null && ageH > (normH || 24) * 4) { status = 'warn'; why.push('стрічка застигла: ' + old + ' старих новин'); }
       finish({ status, why: why.join('; '), total: items.length, kept: kept.length, junk, junkEx, old, noDate, future, lowAlert, newestAgeH: ageH == null ? null : Math.round(ageH * 10) / 10, cover }, kept);
       };
       // v67: «добір». Стрічка коротка (тримає < 60% доби), а Lumo могла бути закрита → старшу частину доби добираємо з Google News по цьому сайту
@@ -323,7 +333,7 @@ function collectFeeds(nowMs, winH, onlyIds, covHopt, opts) {
       let twin = null; if (!x.cal) { const cand = new Set(); tokens(x.title).forEach(w => (tIdx.get(w) || []).forEach(p => cand.add(p))); for (const p of cand) { if (Math.abs((p.t || 0) - (x.t || 0)) < 36 * 3600000 && similar(p.title, x.title)) { twin = p; break; } } }
       if (twin) { if (twin.src !== x.src) (twin.also || (twin.also = [])).push({ src: x.src, srcName: x.srcName, url: x.url }); dupes++; return; }
       pool.push(x); if (tk) seenT.set(tk, x); if (!x.cal) tokens(x.title).forEach(w => { const l = tIdx.get(w) || []; l.push(x); tIdx.set(w, l); }); });
-    const topics = {}; rs.forEach(r => { const f = r.rep; if (f.role === 'hint' || f.type === 'ff' || f.type === 'mfx' || f.topic === 'Катастрофи') return; const T = topics[f.topic] || (topics[f.topic] = { topic: f.topic, feeds: 0, ok: 0, best: 0, items: 0 });
+    const topics = {}; rs.forEach(r => { const f = r.rep; if (f.role === 'hint' || f.type === 'ff' || f.type === 'mfx' || f.type === 'fxcal' || f.topic === 'Катастрофи') return; const T = topics[f.topic] || (topics[f.topic] = { topic: f.topic, feeds: 0, ok: 0, best: 0, items: 0 });
       T.feeds++; if (f.status !== 'fail') { T.ok++; T.best = Math.max(T.best, f.cover || 0); } T.items += f.kept || 0; });
     return { at: new Date(nowMs).toISOString(), windowH: winH, covH, feeds: rs.map(r => r.rep), topics: Object.values(topics), pool, stats: { raw: all.length, kept: pool.length, dupes } };
   });
@@ -383,7 +393,7 @@ function relMergeCloud(arr) { const items = relRead(); const byK = new Map(items
   arr.forEach(x => { if (!x || typeof x !== 'object' || typeof x.key !== 'string' || !Number.isFinite(x.t) || typeof x.actual !== 'string' || !x.actual) return; const k = cS(x.key, 200); if (byK.has(k)) return;
     byK.set(k, { key: k, t: x.t, country: cS(x.country, 40), what: cS(x.what, 160), impact: x.impact === 'High' ? 'High' : 'Medium', actual: cS(x.actual, 30), consensus: cS(x.consensus, 30), previous: cS(x.previous, 30), url: /^https:\/\//.test(String(x.url || '')) ? cS(x.url, 300) : '', seen: Date.now(), cloud: true }); n++; });
   if (!n) return 0; const out = [...byK.values()].sort((a, b) => b.t - a.t).slice(0, 4000);
-  const fp = relFile(); fs.mkdirSync(path.dirname(fp), { recursive: true }); fs.writeFileSync(fp + '.tmp', JSON.stringify({ updated: new Date().toISOString(), source: 'Myfxbook RSS', items: out })); fs.renameSync(fp + '.tmp', fp); return n; }
+  const fp = relFile(); fs.mkdirSync(path.dirname(fp), { recursive: true }); fs.writeFileSync(fp + '.tmp', JSON.stringify({ updated: new Date().toISOString(), source: 'FXStreet calendar (з 23.10.2026; раніше Myfxbook)', items: out })); fs.renameSync(fp + '.tmp', fp); return n; }
 function cloudPull(force) { if (_cloudP) return _cloudP; if (!force && Date.now() - _cloudLast < 20 * 60000) return Promise.resolve(_cloudInfo);
   _cloudLast = Date.now();
   _cloudP = (async () => { const info = { at: new Date().toISOString(), ok: false };

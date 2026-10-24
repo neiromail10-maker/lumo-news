@@ -1,0 +1,284 @@
+{
+ "updated": "2026-10-24T17:44:55.539Z",
+ "ms": 7391,
+ "items": 2987,
+ "released": 40,
+ "feeds": {
+  "total": 45,
+  "ok": 36,
+  "warn": 9,
+  "fail": []
+ },
+ "perFeed": [
+  {
+   "id": "ki",
+   "status": "ok",
+   "kept": 40,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "up",
+   "status": "warn",
+   "kept": 20,
+   "why": "покриває лише 34% доби"
+  },
+  {
+   "id": "ukrinform",
+   "status": "warn",
+   "kept": 30,
+   "why": "покриває лише 49% доби"
+  },
+  {
+   "id": "deepstate",
+   "status": "ok",
+   "kept": 7,
+   "why": ""
+  },
+  {
+   "id": "euronews",
+   "status": "ok",
+   "kept": 36,
+   "why": ""
+  },
+  {
+   "id": "aljazeera",
+   "status": "warn",
+   "kept": 13,
+   "why": "покриває лише 22% доби"
+  },
+  {
+   "id": "npr",
+   "status": "ok",
+   "kept": 10,
+   "why": ""
+  },
+  {
+   "id": "mt",
+   "status": "ok",
+   "kept": 18,
+   "why": ""
+  },
+  {
+   "id": "oilprice",
+   "status": "ok",
+   "kept": 15,
+   "why": ""
+  },
+  {
+   "id": "africanews",
+   "status": "ok",
+   "kept": 36,
+   "why": ""
+  },
+  {
+   "id": "mercopress",
+   "status": "ok",
+   "kept": 9,
+   "why": ""
+  },
+  {
+   "id": "fxstreet",
+   "status": "warn",
+   "kept": 62,
+   "why": "найсвіжіша — 12 год тому (норма ≤ 6); через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "investing",
+   "status": "warn",
+   "kept": 9,
+   "why": "покриває лише 20% доби"
+  },
+  {
+   "id": "fed",
+   "status": "ok",
+   "kept": 0,
+   "why": ""
+  },
+  {
+   "id": "ecb",
+   "status": "ok",
+   "kept": 2,
+   "why": ""
+  },
+  {
+   "id": "ffcal",
+   "status": "ok",
+   "kept": 12,
+   "why": ""
+  },
+  {
+   "id": "fxcal",
+   "status": "ok",
+   "kept": 129,
+   "why": ""
+  },
+  {
+   "id": "gdacs",
+   "status": "ok",
+   "kept": 0,
+   "why": "зелених тривог відсіяно: 328 (беремо лише 🟠/🔴)"
+  },
+  {
+   "id": "usgs",
+   "status": "ok",
+   "kept": 3,
+   "why": ""
+  },
+  {
+   "id": "coindesk",
+   "status": "ok",
+   "kept": 18,
+   "why": ""
+  },
+  {
+   "id": "theblock",
+   "status": "ok",
+   "kept": 10,
+   "why": ""
+  },
+  {
+   "id": "decrypt",
+   "status": "ok",
+   "kept": 17,
+   "why": ""
+  },
+  {
+   "id": "cointelegraph",
+   "status": "warn",
+   "kept": 16,
+   "why": "найсвіжіша — 20 год тому (норма ≤ 12)"
+  },
+  {
+   "id": "techcrunch",
+   "status": "ok",
+   "kept": 6,
+   "why": ""
+  },
+  {
+   "id": "rigzone",
+   "status": "ok",
+   "kept": 11,
+   "why": ""
+  },
+  {
+   "id": "mee",
+   "status": "ok",
+   "kept": 61,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "almonitor",
+   "status": "ok",
+   "kept": 20,
+   "why": ""
+  },
+  {
+   "id": "markettwits",
+   "status": "ok",
+   "kept": 186,
+   "why": ""
+  },
+  {
+   "id": "ap",
+   "status": "ok",
+   "kept": 59,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "reuters",
+   "status": "ok",
+   "kept": 98,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "bbc",
+   "status": "ok",
+   "kept": 24,
+   "why": ""
+  },
+  {
+   "id": "guardian",
+   "status": "ok",
+   "kept": 31,
+   "why": ""
+  },
+  {
+   "id": "dw",
+   "status": "ok",
+   "kept": 21,
+   "why": ""
+  },
+  {
+   "id": "politico",
+   "status": "ok",
+   "kept": 9,
+   "why": ""
+  },
+  {
+   "id": "france24",
+   "status": "warn",
+   "kept": 21,
+   "why": "покриває лише 29% доби"
+  },
+  {
+   "id": "toi",
+   "status": "ok",
+   "kept": 74,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "scmp",
+   "status": "ok",
+   "kept": 50,
+   "why": ""
+  },
+  {
+   "id": "cna",
+   "status": "warn",
+   "kept": 10,
+   "why": "покриває лише 31% доби"
+  },
+  {
+   "id": "japantimes",
+   "status": "ok",
+   "kept": 24,
+   "why": ""
+  },
+  {
+   "id": "taipeitimes",
+   "status": "ok",
+   "kept": 51,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "straitstimes",
+   "status": "ok",
+   "kept": 45,
+   "why": ""
+  },
+  {
+   "id": "hindustan",
+   "status": "ok",
+   "kept": 100,
+   "why": ""
+  },
+  {
+   "id": "nprus",
+   "status": "ok",
+   "kept": 10,
+   "why": ""
+  },
+  {
+   "id": "cnbc",
+   "status": "ok",
+   "kept": 30,
+   "why": ""
+  },
+  {
+   "id": "marketwatch",
+   "status": "warn",
+   "kept": 10,
+   "why": "покриває лише 12% доби"
+  }
+ ]
+}

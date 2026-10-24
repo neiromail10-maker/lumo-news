@@ -1,7 +1,7 @@
 name: collect
 on:
   schedule:
-    - cron: '23 * * * *'   # щогодини о :23 (UTC)
+    - cron: '17,47 * * * *'   # двічі на годину (GitHub часто пропускає запуски)
   workflow_dispatch: {}
 permissions:
   contents: write

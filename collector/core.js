@@ -1,4 +1,4 @@
-// АВТОЗГЕНЕРОВАНО з Lumo main.js (2026-10-24) — не редагувати вручну
+// АВТОЗГЕНЕРОВАНО з Lumo main.js (2026-10-25) — не редагувати вручну
 'use strict';
 const path = require('path'), fs = require('fs'), https = require('https');
 const OUT = process.env.LUMO_OUT || path.join(__dirname, '..', 'out');
@@ -47,6 +47,13 @@ const FEEDS = [
   ['mee', 'Middle East Eye', 'Близький Схід', 'rss', ['https://www.middleeasteye.net/rss', 'gnews:middleeasteye.net'], 12, 'main'],
   ['almonitor', 'Al-Monitor', 'Близький Схід', 'rss', 'https://www.al-monitor.com/rss', 12, 'main'],
   ['markettwits', 'MarketTwits (Telegram, підказка)', 'Підказка', 'tg', 'https://t.me/s/markettwits', 6, 'hint'],
+  ['financialjuice', 'FinancialJuice (Telegram, блискавки)', 'Заяви', 'tg', 'https://t.me/s/financialjuice', 3, 'flash'], // v85: «Заяви й чутки» — окремо від перевіреної вижимки
+  ['walterbloomberg', 'Walter Bloomberg (Telegram, блискавки)', 'Заяви', 'tg', 'https://t.me/s/WalterBloomberg', 12, 'flash'],
+  ['tass', 'TASS English (заяви Кремля)', 'Заяви', 'rss', 'https://tass.com/rss/v2.xml', 6, 'flash'],
+  ['interfax', 'Інтерфакс-Україна', 'Україна', 'rss', 'https://interfax.com.ua/news/last.rss', 6, 'main'],
+  ['rbcua', 'РБК-Україна', 'Україна', 'rss', 'https://www.rbc.ua/static/rss/all.ukr.rss.xml', 6, 'extra'],
+  ['epravda', 'Економічна правда', 'Україна', 'rss', ['gnews:epravda.com.ua'], 12, 'extra'],
+  ['axios', 'Axios', 'Світ', 'rss', 'https://api.axios.com/feed/', 6, 'main'],
   // після перевірки з Mac 19.10 22:16: 'main' — основні, 'extra' — додаткові (працюють, але дають мало або дублюють)
   ['ap', 'AP News', 'Світ', 'rss', ['gnews:apnews.com'], 6, 'main'], // v81 (аудит v2, Д): AP і Reuters — лише через Google News
   ['reuters', 'Reuters', 'Світ', 'rss', ['gnews:reuters.com'], 6, 'main'],
@@ -259,7 +266,9 @@ function relForDigest(fromMs, toMs) { // лише великі економік�
   return relRead().filter(x => x.t >= fromMs && x.t <= toMs && (REL_C[x.country] || x.impact === 'High') && (x.impact === 'High' || ['United States', 'Euro Area', 'Germany', 'United Kingdom', 'China', 'Japan'].includes(x.country)))
     .sort((a, b) => ((b.impact === 'High') - (a.impact === 'High')) || (b.t - a.t)).slice(0, 30).sort((a, b) => a.t - b.t).map(x => { const a = relNum(x.actual), c = relNum(x.consensus), p = relNum(x.previous); const base = isFinite(c) ? c : p;
       const dir = isFinite(a) && isFinite(base) ? (isFinite(c) ? (a > c ? 'вище' : a < c ? 'нижче' : 'на рівні') + ' прогнозу' : '') : '';
-      return { when: dgKyivF(x.t) + ' за Києвом', country: REL_C[x.country] || x.country || '', what: dgS(relUa(x.what), 120), orig: dgS(x.what, 120), actual: dgS(x.actual, 20), consensus: dgS(x.consensus, 20), previous: dgS(x.previous, 20), impact: x.impact, dir }; }); }
+      const nm = String(x.what || ''); const up = /Interest Rate|Rate Decision/i.test(nm) ? 0 : /Unemployment|Jobless|Claims|CPI|Inflation|PPI|PCE|Price Index|HICP|Deflator/i.test(nm) ? -1 : /PMI|GDP|Gross Domestic|Retail|Payroll|Employment Change|Confidence|Sentiment|Industrial|Production|Durable|Housing|Building|Home Sales|Trade Balance|ZEW|Ifo|Expectations Index|Current Conditions|Factory Orders/i.test(nm) ? 1 : 0;
+      const good = up && isFinite(a) && isFinite(c) ? Math.sign(a - c) * up : null; // v84: ✅ краще за прогноз для економіки, ❌ гірше (інфляція й безробіття вище — гірше)
+      return { good, when: dgKyivF(x.t) + ' за Києвом', country: REL_C[x.country] || x.country || '', what: dgS(relUa(x.what), 120), orig: dgS(x.what, 120), actual: dgS(x.actual, 20), consensus: dgS(x.consensus, 20), previous: dgS(x.previous, 20), impact: x.impact, dir }; }); }
 function collectFeeds(nowMs, winH, onlyIds, covHopt, opts) {
   opts = opts || {}; const accOld = opts.accOld || {}, accNew = opts.accNew || {}; const gDays = Math.min(4, Math.max(1, Math.ceil(winH / 24)));
   const covH = covHopt || 25; // покриття рахуємо від стандартної доби (25 год), навіть коли вікно ширше
@@ -339,7 +348,7 @@ function collectFeeds(nowMs, winH, onlyIds, covHopt, opts) {
       let twin = null; if (!x.cal) { const cand = new Set(); tokens(x.title).forEach(w => (tIdx.get(w) || []).forEach(p => cand.add(p))); for (const p of cand) { if (Math.abs((p.t || 0) - (x.t || 0)) < 36 * 3600000 && similar(p.title, x.title)) { twin = p; break; } } }
       if (twin) { if (twin.src !== x.src) (twin.also || (twin.also = [])).push({ src: x.src, srcName: x.srcName, url: x.url }); dupes++; return; }
       pool.push(x); if (tk) seenT.set(tk, x); if (!x.cal) tokens(x.title).forEach(w => { const l = tIdx.get(w) || []; l.push(x); tIdx.set(w, l); }); });
-    const topics = {}; rs.forEach(r => { const f = r.rep; if (f.role === 'hint' || f.type === 'ff' || f.type === 'mfx' || f.type === 'fxcal' || f.topic === 'Катастрофи') return; const T = topics[f.topic] || (topics[f.topic] = { topic: f.topic, feeds: 0, ok: 0, best: 0, items: 0 });
+    const topics = {}; rs.forEach(r => { const f = r.rep; if (f.role === 'hint' || f.role === 'flash' || f.type === 'ff' || f.type === 'mfx' || f.type === 'fxcal' || f.topic === 'Катастрофи') return; const T = topics[f.topic] || (topics[f.topic] = { topic: f.topic, feeds: 0, ok: 0, best: 0, items: 0 });
       T.feeds++; if (f.status !== 'fail') { T.ok++; T.best = Math.max(T.best, f.cover || 0); } T.items += f.kept || 0; });
     return { at: new Date(nowMs).toISOString(), windowH: winH, covH, feeds: rs.map(r => r.rep), topics: Object.values(topics), pool, stats: { raw: all.length, kept: pool.length, dupes } };
   });

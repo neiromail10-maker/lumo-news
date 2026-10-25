@@ -1,0 +1,137 @@
+{
+ "FirstSquawk": {
+  "st": 200,
+  "len": 9653,
+  "posts": 0,
+  "items": 0,
+  "last": "",
+  "first": "",
+  "sample": ""
+ },
+ "WalterBloomberg": {
+  "st": 200,
+  "len": 98302,
+  "posts": 20,
+  "items": 0,
+  "last": "2026-10-25T13:35:22+00:00",
+  "first": "2026-10-23T15:01:49+00:00",
+  "sample": "tgme_widget_message_text js-message_text\" dir=\"auto\">ZELENSKIY: INTERCEPTOR DELIVERIES ARE DELAYED, THIS IS A REAL PROBLEM FOR US<br/>(<a href=\"https://t.me/WalterBloomberg\" target=\"_blank\">@WalterBloomberg</a>)</div>\n<div class=\"tgme_widget_message_rea"
+ },
+ "financialjuice": {
+  "st": 200,
+  "len": 92137,
+  "posts": 20,
+  "items": 0,
+  "last": "2026-10-25T19:02:24+00:00",
+  "first": "2026-10-25T11:37:35+00:00",
+  "sample": "tgme_widget_message_text js-message_text\" dir=\"auto\">Iran&#39;s air defence shoots down Lucas drone near southern Bandar Abbas: Tasnim|<a href=\"https://t.me/FinancialJuice\" target=\"_blank\" rel=\"noopener\" onclick=\"return confirm('Open this link?\\n\\n'+thi"
+ },
+ "DeItaone": {
+  "st": 200,
+  "len": 9640,
+  "posts": 0,
+  "items": 0,
+  "last": "",
+  "first": "",
+  "sample": ""
+ },
+ "unfolded": {
+  "st": 200,
+  "len": 98379,
+  "posts": 20,
+  "items": 0,
+  "last": "2026-10-23T13:31:12+00:00",
+  "first": "2026-10-19T12:33:57+00:00",
+  "sample": "tgme_widget_message_text js-message_text\" dir=\"auto\">One year after the October 10, 2025 record &#036;19B crypto liquidation crash, Kaiko data shows that BTC perp open interest still ~16% below pre-crash levels in BTC terms, dollar spot depth 27% lower,"
+ },
+ "spectatorindex": {
+  "st": 200,
+  "len": 99288,
+  "posts": 20,
+  "items": 0,
+  "last": "2022-03-19T10:12:26+00:00",
+  "first": "2018-07-07T01:15:24+00:00",
+  "sample": "tgme_widget_message_text js-message_text\" dir=\"auto\">Current performance of past winners of World Cup.<br/><br/>Italy: Did not qualify<br/><br/>Germany: Out<br/>Argentina: Out<br/>Brazil: Out<br/>Uruguay: Out<br/>Spain: Out<br/><br/>France: In<br/>Engla"
+ },
+ "interfax-ua": {
+  "st": 200,
+  "len": 18595,
+  "posts": 0,
+  "items": 25,
+  "last": "Sun, 25 Oct 2026 20:45:50 +0200",
+  "first": "Sun, 25 Oct 2026 13:01:32 +0200",
+  "sample": "<title>Інтерфакс-Україна</title><link>https://interfax.com.ua/</link><description>Інформація про останні події в політиці України, ключові українські економічні новини та основні події в країнах СНД і світу.</description><atom:link href=\"https://interfax.com.ua/news/last.rss\" rel=\"self\"/><language>uk</language><lastBuildDate>Sun, 25 Oct 2026 20:45:50 +0200</lastBuildDate><ttl>2</ttl><atom:link href=\"https://pubsubhubbub.appspot.com/\" rel=\"hub\"/><image><url>https://interfax.com.ua/static/rss_logo_180x180.jpg</url><title>Інтерфакс-Україна</title>"
+ },
+ "interfax-ua-en": {
+  "st": 200,
+  "len": 17502,
+  "posts": 0,
+  "items": 25,
+  "last": "Sat, 24 Oct 2026 17:02:32 +0300",
+  "first": "Fri, 23 Oct 2026 21:07:23 +0300",
+  "sample": "<title>Interfax-Ukraine</title><link>https://en.interfax.com.ua/</link><description>Information about recent political developments in Ukraine, key Ukrainian economic news and major current events in the CIS and the rest of the world.</description><atom:link href=\"https://en.interfax.com.ua/news/last.rss\" rel=\"self\"/><language>en</language><lastBuildDate>Sat, 24 Oct 2026 17:02:32 +0300</lastBuildDate><ttl>2</ttl><atom:link href=\"https://pubsubhubbub.appspot.com/\" rel=\"hub\"/><image><url>https://interfax.com.ua/static/rss_logo_180x180.jpg</url><title>Interfax-Ukraine</title>"
+ },
+ "rbc-ua": {
+  "st": 200,
+  "len": 600564,
+  "posts": 0,
+  "items": 75,
+  "last": "Sun, 25 Oct 2026 21:03:05 +0200",
+  "first": "Sun, 25 Oct 2026 09:31:46 +0200",
+  "sample": "<title>РБК-Украина</title>\n        <link>https://www.rbc.ua/static/rss/all.ukr.rss.xml</link>\n        <description>РБК-Украина</description>\n        <language>UKR</language>\n        <pubDate>Sun, 25 Oct 2026 21:03:05 +0200</pubDate>\n        <lastBuildDate>Sun, 25 Oct 2026 21:03:05 +0200</lastBuildDate>\n        <generator>FT</generator>\n                                    <item>\n                    <title>Зеленський розкрив зміст документа, який Віткофф передав Путіну</title>"
+ },
+ "rbc-ua-newsfeed": {
+  "st": 404,
+  "len": 548,
+  "posts": 0,
+  "items": 0,
+  "last": "",
+  "first": "",
+  "sample": ""
+ },
+ "epravda": {
+  "st": 403,
+  "len": 5559,
+  "posts": 0,
+  "items": 0,
+  "last": "",
+  "first": "",
+  "sample": ""
+ },
+ "epravda-eng": {
+  "st": 403,
+  "len": 5592,
+  "posts": 0,
+  "items": 0,
+  "last": "",
+  "first": "",
+  "sample": ""
+ },
+ "tass": {
+  "st": 200,
+  "len": 25631,
+  "posts": 0,
+  "items": 57,
+  "last": "Sun, 25 Oct 2026 21:42:42 +0300",
+  "first": "Sat, 24 Oct 2026 22:08:23 +0300",
+  "sample": "<title>TASS</title>\n<description>TASS News Agency</description>\n<language>en</language>\n<link><![CDATA[https://tass.com]]></link>\n<copyright>TASS</copyright>\n<image><url><![CDATA[https://tass.com/i/rss/en/logo.png]]></url>\n<title>TASS</title>"
+ },
+ "axios": {
+  "st": 200,
+  "len": 611555,
+  "posts": 0,
+  "items": 53,
+  "last": "Sun, 25 Oct 2026 14:44:35 +0000",
+  "first": "Tue, 20 Oct 2026 17:55:04 +0000",
+  "sample": "<title>Axios</title><link>https://www.axios.com/</link><description>Axios</description><language>en-us</language><lastBuildDate>Sun, 25 Oct 2026 18:15:41 +0000</lastBuildDate><atom:link href=\"https://api.axios.com/feed/\" rel=\"self\" type=\"application/rss+xml\"/><item><title>Scoop: Netanyahu presses Trump for more support ahead of tight Tuesday election</title>"
+ },
+ "semafor": {
+  "st": 200,
+  "len": 615941,
+  "posts": 0,
+  "items": 189,
+  "last": "Fri, 23 Oct 2026 19:35:04 +0000",
+  "first": "Fri, 16 Oct 2026 10:32:56 +0000",
+  "sample": "<title>Semafor</title><description>A global news platform for breaking stories, analysis and video.</description><link>https://www.semafor.com</link><language>en-US</language><pubDate>Fri, 23 Oct 2026 19:35:04 +0000</pubDate><lastBuildDate>Fri, 23 Oct 2026 19:35:04 +0000</lastBuildDate><snf:logo><url>https://www.semafor.com/_next/static/media/semafor-og-lg.30379187.png</url></snf:logo><atom:link href=\"https://www.semafor.com/rss.xml\" rel=\"self\" /><item><link>https://www.semafor.com/article/10/23/2026/dems-make-a-kansas-play-as-gop-eyes-a-california-seat</link><guid>https://www.semafor.com/article/10/23/2026/dems-make-a-kansas-play-as-gop-eyes-a-california-seat</guid><category>Politics</category><description>Democrat Don Coover is down by three points against incumbent Republican Rep. Derek Schmidt, within the 3.9% margin of error, according to Democratic polling conducted in mid-October and shared with Semafor.</description><title>Dems make a Kansas play as GOP eyes a California seat</title>"
+ }
+}

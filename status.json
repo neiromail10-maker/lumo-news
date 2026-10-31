@@ -1,0 +1,272 @@
+{
+ "updated": "2026-10-31T20:53:41.586Z",
+ "ms": 7819,
+ "items": 7969,
+ "released": 111,
+ "feeds": {
+  "total": 43,
+  "ok": 36,
+  "warn": 7,
+  "fail": []
+ },
+ "perFeed": [
+  {
+   "id": "ki",
+   "status": "ok",
+   "kept": 43,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "up",
+   "status": "warn",
+   "kept": 20,
+   "why": "покриває лише 31% доби"
+  },
+  {
+   "id": "ukrinform",
+   "status": "warn",
+   "kept": 30,
+   "why": "покриває лише 48% доби"
+  },
+  {
+   "id": "deepstate",
+   "status": "ok",
+   "kept": 3,
+   "why": ""
+  },
+  {
+   "id": "euronews",
+   "status": "ok",
+   "kept": 43,
+   "why": ""
+  },
+  {
+   "id": "aljazeera",
+   "status": "warn",
+   "kept": 11,
+   "why": "покриває лише 29% доби"
+  },
+  {
+   "id": "mt",
+   "status": "ok",
+   "kept": 10,
+   "why": ""
+  },
+  {
+   "id": "oilprice",
+   "status": "ok",
+   "kept": 15,
+   "why": ""
+  },
+  {
+   "id": "africanews",
+   "status": "ok",
+   "kept": 35,
+   "why": ""
+  },
+  {
+   "id": "mercopress",
+   "status": "ok",
+   "kept": 5,
+   "why": ""
+  },
+  {
+   "id": "fxstreet",
+   "status": "warn",
+   "kept": 46,
+   "why": "найсвіжіша — 25 год тому (норма ≤ 6); через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "investing",
+   "status": "warn",
+   "kept": 9,
+   "why": "покриває лише 14% доби"
+  },
+  {
+   "id": "fed",
+   "status": "ok",
+   "kept": 0,
+   "why": ""
+  },
+  {
+   "id": "ecb",
+   "status": "ok",
+   "kept": 3,
+   "why": ""
+  },
+  {
+   "id": "ffcal",
+   "status": "ok",
+   "kept": 16,
+   "why": ""
+  },
+  {
+   "id": "fxcal",
+   "status": "ok",
+   "kept": 157,
+   "why": ""
+  },
+  {
+   "id": "usgs",
+   "status": "ok",
+   "kept": 1,
+   "why": ""
+  },
+  {
+   "id": "coindesk",
+   "status": "ok",
+   "kept": 20,
+   "why": ""
+  },
+  {
+   "id": "theblock",
+   "status": "ok",
+   "kept": 9,
+   "why": ""
+  },
+  {
+   "id": "decrypt",
+   "status": "ok",
+   "kept": 17,
+   "why": ""
+  },
+  {
+   "id": "cointelegraph",
+   "status": "ok",
+   "kept": 23,
+   "why": ""
+  },
+  {
+   "id": "techcrunch",
+   "status": "ok",
+   "kept": 14,
+   "why": ""
+  },
+  {
+   "id": "mee",
+   "status": "ok",
+   "kept": 71,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "almonitor",
+   "status": "ok",
+   "kept": 20,
+   "why": ""
+  },
+  {
+   "id": "markettwits",
+   "status": "ok",
+   "kept": 162,
+   "why": ""
+  },
+  {
+   "id": "financialjuice",
+   "status": "ok",
+   "kept": 200,
+   "why": ""
+  },
+  {
+   "id": "walterbloomberg",
+   "status": "ok",
+   "kept": 84,
+   "why": ""
+  },
+  {
+   "id": "tass",
+   "status": "ok",
+   "kept": 55,
+   "why": ""
+  },
+  {
+   "id": "interfax",
+   "status": "warn",
+   "kept": 25,
+   "why": "покриває лише 26% доби"
+  },
+  {
+   "id": "axios",
+   "status": "ok",
+   "kept": 21,
+   "why": ""
+  },
+  {
+   "id": "ap",
+   "status": "ok",
+   "kept": 65,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "reuters",
+   "status": "ok",
+   "kept": 93,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "bbc",
+   "status": "ok",
+   "kept": 21,
+   "why": ""
+  },
+  {
+   "id": "guardian",
+   "status": "ok",
+   "kept": 27,
+   "why": ""
+  },
+  {
+   "id": "dw",
+   "status": "ok",
+   "kept": 23,
+   "why": ""
+  },
+  {
+   "id": "politico",
+   "status": "ok",
+   "kept": 8,
+   "why": ""
+  },
+  {
+   "id": "france24",
+   "status": "ok",
+   "kept": 22,
+   "why": ""
+  },
+  {
+   "id": "toi",
+   "status": "ok",
+   "kept": 70,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "scmp",
+   "status": "ok",
+   "kept": 50,
+   "why": ""
+  },
+  {
+   "id": "cna",
+   "status": "warn",
+   "kept": 7,
+   "why": "покриває лише 35% доби"
+  },
+  {
+   "id": "straitstimes",
+   "status": "ok",
+   "kept": 31,
+   "why": ""
+  },
+  {
+   "id": "hindustan",
+   "status": "ok",
+   "kept": 92,
+   "why": ""
+  },
+  {
+   "id": "cnbc",
+   "status": "ok",
+   "kept": 30,
+   "why": ""
+  }
+ ]
+}

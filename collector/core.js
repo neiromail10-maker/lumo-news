@@ -1,4 +1,4 @@
-// АВТОЗГЕНЕРОВАНО з Lumo main.js (2026-10-29) — не редагувати вручну
+// АВТОЗГЕНЕРОВАНО з Lumo main.js (2026-10-31) — не редагувати вручну
 'use strict';
 const path = require('path'), fs = require('fs'), https = require('https');
 const OUT = process.env.LUMO_OUT || path.join(__dirname, '..', 'out');
@@ -25,7 +25,7 @@ const FEEDS = [
   ['deepstate', 'DeepState (Telegram)', 'Україна', 'tg', 'https://t.me/s/DeepStateUA', 24, 'main'],
     ['euronews', 'Euronews', 'Європа', 'rss', ['https://www.euronews.com/rss', 'https://www.euronews.com/rss?format=mrss&level=theme&name=news', 'gnews:euronews.com'], 6, 'main'],
   ['aljazeera', 'Al Jazeera', 'Світ', 'rss', 'https://www.aljazeera.com/xml/rss/all.xml', 6, 'main'],
-  ['npr', 'NPR World', 'Світ', 'rss', 'https://feeds.npr.org/1004/rss.xml', 24, 'main'],
+  /* v105 (31.10, Роман): прибрано — мало користі за статистикою 96 год / 5 вижимок: ['npr', 'NPR World', 'Світ', 'rss', 'https://feeds.npr.org/1… */
   ['mt', 'The Moscow Times', 'Росія', 'rss', 'https://www.themoscowtimes.com/rss/news', 12, 'main'],
   ['oilprice', 'OilPrice', 'Енергетика і сировина', 'rss', 'https://oilprice.com/rss/main', 12, 'main'],
   ['africanews', 'Africanews', 'Африка', 'rss', 'https://www.africanews.com/feed/rss', 24, 'main'],
@@ -36,14 +36,14 @@ const FEEDS = [
   ['ecb', 'ЄЦБ (прес-релізи)', 'Ринки і макро', 'rss', 'https://www.ecb.europa.eu/rss/press.html', 240, 'main'],
   ['ffcal', 'ForexFactory (календар)', 'Календар', 'ff', 'https://nfs.faireconomy.media/ff_calendar_thisweek.xml', 0, 'main'],
   ['fxcal', 'FXStreet (факти даних)', 'Календар', 'fxcal', 'https://calendar-api.fxstreet.com/en/api/v1/eventDates/{FROM}/{TO}', 0, 'main'], // v80: факт / прогноз / було за 48 год; відкривається і з Mac, і з GitHub (Myfxbook блокує хмару) // v78: що ВЖЕ вийшло (факт / прогноз / було) — лише сьогоднішні події, тож пишемо в історію
-  ['gdacs', 'GDACS (катастрофи)', 'Катастрофи', 'gdacs', 'https://www.gdacs.org/xml/rss.xml', 0, 'main'],
+  /* v105 (31.10, Роман): прибрано — мало користі за статистикою 96 год / 5 вижимок: ['gdacs', 'GDACS (катастрофи)', 'Катастрофи', 'gdacs', 'http… */
   ['usgs', 'USGS (землетруси)', 'Катастрофи', 'rss', 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.atom', 0, 'main'],
   ['coindesk', 'CoinDesk', 'Крипто', 'rss', 'https://www.coindesk.com/arc/outboundfeeds/rss/', 12, 'main'],
   ['theblock', 'The Block', 'Крипто', 'rss', 'https://www.theblock.co/rss.xml', 24, 'main'],
   ['decrypt', 'Decrypt', 'Крипто', 'rss', 'https://decrypt.co/feed', 24, 'main'],
   ['cointelegraph', 'Cointelegraph', 'Крипто', 'rss', 'https://cointelegraph.com/rss', 12, 'main'],
   ['techcrunch', 'TechCrunch AI', 'AI/техно', 'rss', 'https://techcrunch.com/category/artificial-intelligence/feed/', 24, 'main'],
-  ['rigzone', 'Rigzone (нафта й газ)', 'Енергетика і сировина', 'rss', 'https://www.rigzone.com/news/rss/rigzone_latest.aspx', 12, 'main'],
+  /* v105 (31.10, Роман): прибрано — мало користі за статистикою 96 год / 5 вижимок: ['rigzone', 'Rigzone (нафта й газ)', 'Енергетика і сировина'… */
   ['mee', 'Middle East Eye', 'Близький Схід', 'rss', ['https://www.middleeasteye.net/rss', 'gnews:middleeasteye.net'], 12, 'main'],
   ['almonitor', 'Al-Monitor', 'Близький Схід', 'rss', 'https://www.al-monitor.com/rss', 12, 'main'],
   ['markettwits', 'MarketTwits (Telegram, підказка)', 'Підказка', 'tg', 'https://t.me/s/markettwits', 6, 'hint'],
@@ -51,7 +51,7 @@ const FEEDS = [
   ['walterbloomberg', 'Walter Bloomberg (Telegram, блискавки)', 'Заяви', 'tg', 'https://t.me/s/WalterBloomberg', 12, 'flash'],
   ['tass', 'TASS English (заяви Кремля)', 'Заяви', 'rss', 'https://tass.com/rss/v2.xml', 6, 'flash'],
   ['interfax', 'Інтерфакс-Україна', 'Україна', 'rss', 'https://interfax.com.ua/news/last.rss', 6, 'main'],
-  ['rbcua', 'РБК-Україна', 'Україна', 'rss', 'https://www.rbc.ua/static/rss/all.ukr.rss.xml', 6, 'extra'],
+  /* v105 (31.10, Роман): прибрано — мало користі за статистикою 96 год / 5 вижимок: ['rbcua', 'РБК-Україна', 'Україна', 'rss', 'https://www.rbc.… */
   ['axios', 'Axios', 'Світ', 'rss', 'https://api.axios.com/feed/', 6, 'main'],
   // після перевірки з Mac 19.10 22:16: 'main' — основні, 'extra' — додаткові (працюють, але дають мало або дублюють)
   ['ap', 'AP News', 'Світ', 'rss', ['gnews:apnews.com'], 6, 'main'], // v81 (аудит v2, Д): AP і Reuters — лише через Google News
@@ -64,13 +64,13 @@ const FEEDS = [
   ['toi', 'Times of Israel', 'Близький Схід', 'rss', ['https://www.timesofisrael.com/feed/', 'gnews:timesofisrael.com'], 6, 'extra'], // v79: 403 із хмари → Google News
   ['scmp', 'South China Morning Post', 'Азія', 'rss', 'https://www.scmp.com/rss/91/feed', 12, 'main'],
   ['cna', 'CNA (Сінгапур)', 'Азія', 'rss', 'https://www.channelnewsasia.com/rssfeeds/8395986', 12, 'extra'],
-  ['japantimes', 'The Japan Times', 'Азія', 'rss', 'https://www.japantimes.co.jp/feed/', 12, 'main'],
-  ['taipeitimes', 'Taipei Times', 'Азія', 'rss', ['gnews:taipeitimes.com'], 24, 'extra'], // 20.10: у власній стрічці дати «в майбутньому» (часовий пояс) → лише Google News
+  /* v105 (31.10, Роман): прибрано — мало користі за статистикою 96 год / 5 вижимок: ['japantimes', 'The Japan Times', 'Азія', 'rss', 'https://ww… */
+  /* v105 (31.10, Роман): прибрано — мало користі за статистикою 96 год / 5 вижимок: ['taipeitimes', 'Taipei Times', 'Азія', 'rss', ['gnews:taipe… */
   ['straitstimes', 'The Straits Times (Азія)', 'Азія', 'rss', 'https://www.straitstimes.com/news/asia/rss.xml', 12, 'main'],
   ['hindustan', 'Hindustan Times (світ)', 'Світ', 'rss', 'https://www.hindustantimes.com/feeds/rss/world-news/rssfeed.xml', 12, 'extra'], // 21.10 аудит: це здебільшого США/таблоїд, не Азія
-  ['nprus', 'NPR (США)', 'Пн. Америка', 'rss', 'https://feeds.npr.org/1003/rss.xml', 24, 'main'], // 21.10: «Пн. Америка» не мала жодної стрічки
+  /* v105 (31.10, Роман): прибрано — мало користі за статистикою 96 год / 5 вижимок: ['nprus', 'NPR (США)', 'Пн. Америка', 'rss', 'https://feeds.… */
   ['cnbc', 'CNBC (ринки)', 'Ринки і макро', 'rss', 'https://www.cnbc.com/id/100003114/device/rss/rss.html', 12, 'main'],
-  ['marketwatch', 'MarketWatch', 'Ринки і макро', 'rss', 'https://feeds.marketwatch.com/marketwatch/topstories/', 12, 'extra']
+  /* v105 (31.10, Роман): прибрано — мало користі за статистикою 96 год / 5 вижимок: ['marketwatch', 'MarketWatch', 'Ринки і макро', 'rss', 'http… */
 ];
 function fetchFeedText(url, cb, depth, plain) { // як fetchText, але з «браузерним» UA і Accept для RSS; v67: 403/406 → ще раз із простими заголовками
   if (!plain) { const cb0 = cb; cb = (d, st) => { if (!d && (st === 406 || st === 403 || st === 415)) return fetchFeedText(url, cb0, depth, true); cb0(d, st); }; }
@@ -228,8 +228,8 @@ function regionOf(title) { const t = normT(title).replace(/\bnew mexico\b/g, 'nm
   hits.sort((a, b) => (b.k - a.k) || (a.first - b.first)); return hits[0].r; }
 /* 21.10: відбір пулу з квотами (замість «найновіші 1600»): ≤ 60 на стрічку, рівномірно по добах вікна */
 const WEIGHT_RE = /\b(kill\w*|dead|deaths?|casualt\w*|strike|attack\w*|missile\w*|drones?|explosion|blast|blackout|outage|power cut|ebola|outbreak|epidemic|crash\w*|plung\w*|tumbl\w*|slump\w*|default\w*|bankrupt\w*|hack\w*|exploit|sanction\w*|ceasefire|truce|earthquake|storm|flood\w*|wildfire|evacuat\w*|blockade|mines?)\b/i;
-const WEIGHT_UA = /(удар|атак|загин|вбит|убит|ракет|дрон|вибух|обстріл|ормуз|іран|перехопи|евакуац|санкц|блекаут|знеструм|hormuz|iran\w*|diplomats?|retaliat\w*)/i; /* v92 (А4): українські заголовки теж мають вагу */
-const weightOf = x => { const tx = String(x.title || '') + ' ' + String(x.desc || '').slice(0, 200); return (x.also ? x.also.length * 3 : 0) + (WEIGHT_RE.test(tx) ? 2 : 0) + (WEIGHT_UA.test(String(x.title || '')) ? 2 : 0) + (x.role === 'main' ? 1 : 0) - (JUNK_URL.test(String(x.url || '')) || /\/(people|useful|lifestyle|style|food|travel|health\/wellness)\//i.test(String(x.url || '')) ? 5 : 0); };
+const WEIGHT_UA = /(удар|атак|загин|вбит|убит|ракет|дрон|вибух|обстріл|ормуз|іран|перехопи|евакуац|санкц|блекаут|знеструм|hormuz|iran\w*|diplomats?|retaliat\w*)/i; const WEIGHT_POL = /(coup|переворот|захоплен|захват|constitutional (court|tribunal|crisis)|конституційн\S* (суд|трибунал|криз)|martial law|воєнн\S* стан|state of emergency|надзвичайн\S* стан|impeach|імпічмент|riot police|power grab|parliament stormed|polan\w*|polish|польщ\S*|hungar\w*|угорщ\S*|slovak\w*|словаччин\S*|romania\w*|румуні\S*|moldov\w*|молдов\S*|belarus\w*|білорус\S*)/i; /* v103 (Роман: «переворот у Польщі»): політичні кризи й сусіди України — вага, щоб не відрізались */ /* v92 (А4): українські заголовки теж мають вагу */
+const weightOf = x => { const tx = String(x.title || '') + ' ' + String(x.desc || '').slice(0, 200); return (x.also ? x.also.length * 3 : 0) + (WEIGHT_RE.test(tx) ? 2 : 0) + (WEIGHT_UA.test(String(x.title || '')) ? 2 : 0) + (WEIGHT_POL.test(String(x.title || '')) ? 2 : 0) + (x.mt ? 4 : 0) + (x.role === 'main' ? 1 : 0) - (JUNK_URL.test(String(x.url || '')) || /\/(people|useful|lifestyle|style|food|travel|health\/wellness)\//i.test(String(x.url || '')) ? 5 : 0); };
 function selectPool(items, cap, nowMs, winH) { const scW = Math.max(1, Math.min(2.7, winH / 36)); const PERR = { main: Math.round(50 * scW), cand: Math.round(40 * scW), extra: Math.round(25 * scW) }; /* v95: довше вікно — більше на стрічку */ /* 22.10 аудит-2: ліміт за роллю стрічки */ const blocks = Math.max(1, Math.ceil(winH / 12)) + 1; const tOf = x => x.t || x.seen || nowMs; const nb = Math.floor(nowMs / 43200000); const blk = x => Math.min(blocks - 1, Math.max(0, nb - Math.floor(tOf(x) / 43200000))); // v81 (аудит v2, Ж): блоки прив'язані до 00/12 UTC — стабільніше між прогонами
   const byFeed = new Map(); items.forEach(x => { const a = byFeed.get(x.src) || []; a.push(x); byFeed.set(x.src, a); });
   let pre = []; const rest = []; byFeed.forEach(a => { const PER = PERR[a[0].role] || 40; const B = Array.from({ length: blocks }, () => []); a.forEach(x => B[blk(x)].push(x)); B.forEach(b => b.sort((x, y) => (weightOf(y) - weightOf(x)) || (tOf(y) - tOf(x)))); // спершу вагоміші
@@ -398,7 +398,10 @@ let _colP = null, _colLast = null;
 const CLOUD_RAW = 'https://raw.githubusercontent.com/neiromail10-maker/lumo-news/data/';
 let _cloudLast = 0, _cloudInfo = null, _cloudP = null;
 const cS = (v, n) => typeof v === 'string' ? v.slice(0, n) : '';
-function cloudGet(name) { return new Promise(res => fetchFeedText(CLOUD_RAW + name + '?t=' + Date.now(), (t, st) => res(t ? { ok: true, t } : { ok: false, st }), 0, true)); }
+let _cloudSha = ''; /* v101: raw.githubusercontent кешує гілку ~5 хв — після дозбору GitHub Lumo брала старе; тепер читаємо за SHA останнього коміту */
+async function cloudSha() { try { const tok = ghToken(); const r = await new Promise(res => { const rq = https.get({ hostname: 'api.github.com', path: '/repos/neiromail10-maker/lumo-news/git/ref/heads/data', headers: Object.assign({ 'User-Agent': 'Lumo', 'Accept': 'application/vnd.github+json' }, tok ? { 'Authorization': 'Bearer ' + tok } : {}) }, x => { let b = ''; x.setEncoding('utf8'); x.on('data', c => { b += c; }); x.on('end', () => res({ st: x.statusCode, b })); }); rq.setTimeout(15000, () => { try { rq.destroy(); } catch (e) {} res({ st: 0 }); }); rq.on('error', () => res({ st: 0 })); });
+  if (r.st === 200) { const sha = (JSON.parse(r.b).object || {}).sha; if (/^[0-9a-f]{40}$/.test(String(sha || ''))) return sha; } } catch (e) {} return ''; }
+function cloudGet(name) { return new Promise(res => fetchFeedText((_cloudSha ? CLOUD_RAW.replace(/\/data\/$/, '/' + _cloudSha + '/') : CLOUD_RAW) + name + '?t=' + Date.now(), (t, st) => res(t ? { ok: true, t } : { ok: false, st }), 0, true)); }
 const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, '').toLowerCase(); } catch (e) { return ''; } };
 function cloudDomains() { const M = new Map(); const add = (id, h) => { if (!h) return; const a = M.get(id) || new Set(); a.add(h); M.set(id, a); };
   FEEDS.forEach(f => { (Array.isArray(f[4]) ? f[4] : [f[4]]).forEach(u => { if (/^gnews:/.test(u)) { add(f[0], u.slice(6)); add(f[0], 'news.google.com'); } else add(f[0], hostOf(String(u).replace(/^html:/, ''))); }); if (f[3] === 'tg') add(f[0], 't.me'); if (f[3] === 'ff') add(f[0], 'forexfactory.com'); if (f[3] === 'rss') add(f[0], 'news.google.com'); if (f[0] === 'bbc') { add(f[0], 'bbc.com'); add(f[0], 'bbc.co.uk'); } }); // v83: хмара добирає Google News для будь-якої rss
@@ -420,7 +423,7 @@ function relMergeCloud(arr) { const items = relRead(); const byK = new Map(items
   const fp = relFile(); fs.mkdirSync(path.dirname(fp), { recursive: true }); fs.writeFileSync(fp + '.tmp', JSON.stringify({ updated: new Date().toISOString(), source: 'FXStreet calendar (з 23.10.2026; раніше Myfxbook)', items: out })); fs.renameSync(fp + '.tmp', fp); return n; }
 function cloudPull(force) { if (_cloudP) return _cloudP; if (!force && Date.now() - _cloudLast < 20 * 60000) return Promise.resolve(_cloudInfo);
   _cloudLast = Date.now();
-  _cloudP = (async () => { const info = { at: new Date().toISOString(), ok: false };
+  _cloudP = (async () => { const info = { at: new Date().toISOString(), ok: false }; _cloudSha = await cloudSha(); info.sha = _cloudSha.slice(0, 7);
     try { const nowMs = Date.now(); const FID = new Map(FEEDS.map(f => [f[0], f]));
       const st = await cloudGet('status.json'); if (st.ok) { try { const j = JSON.parse(st.t); info.updated = cS(j.updated, 40); info.feedsOk = +((j.feeds || {}).ok) || 0; info.feedsTotal = +((j.feeds || {}).total) || 0; } catch (e) {} }
       const p = await cloudGet('pool-accum.json');
@@ -436,6 +439,7 @@ function cloudPull(force) { if (_cloudP) return _cloudP; if (!force && Date.now(
     return info; })().finally(() => { _cloudP = null; });
   return _cloudP; }
 const cloudWait = ms => Promise.race([cloudPull(true).catch(() => null), new Promise(r => setTimeout(() => r(null), ms))]);
+
 
 function collectShared(winH, maxAgeMs) { // 22.10 аудит Г: хто прийшов другим — чекає першого; свіжий (≤ maxAge) результат — повторно
   if (_colP) return _colP; if (_colLast && Date.now() - _colLast.ms < (maxAgeMs || 0) && _colLast.winH >= winH) return Promise.resolve(_colLast.r);

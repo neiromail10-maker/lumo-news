@@ -80,7 +80,7 @@ const FEEDS = [
   /* v112 (01.11, Роман): Південна Азія, Африка, Латинська Америка — свої джерела */
   ['thehindu', 'The Hindu (Індія)', 'Азія', 'rss', ['https://www.thehindu.com/news/national/feeder/default.rss', 'gnews:thehindu.com'], 24, 'main'],
   ['dawn', 'Dawn (Пакистан)', 'Азія', 'rss', ['https://www.dawn.com/feeds/home', 'gnews:dawn.com'], 24, 'extra'],
-  ['dailystar', 'The Daily Star (Бангладеш)', 'Азія', 'rss', ['https://www.thedailystar.net/frontpage/rss.xml', 'gnews:thedailystar.net'], 24, 'extra'],
+  ['dailystar', 'The Daily Star (Бангладеш)', 'Азія', 'rss', ['gnews:thedailystar.net'], 24, 'extra'],
   ['premiumtimes', 'Premium Times (Нігерія)', 'Африка', 'rss', ['https://www.premiumtimesng.com/feed', 'gnews:premiumtimesng.com'], 24, 'extra'],
   ['news24', 'News24 (ПАР)', 'Африка', 'rss', ['https://feeds.news24.com/articles/news24/TopStories/rss', 'gnews:news24.com'], 24, 'extra'],
   ['ahram', 'Ahram Online (Єгипет)', 'Африка', 'rss', ['gnews:english.ahram.org.eg'], 24, 'extra'],
@@ -89,7 +89,7 @@ const FEEDS = [
   ['ticotimes', 'Tico Times (Центральна Америка)', 'Лат. Америка', 'rss', ['https://ticotimes.net/feed', 'gnews:ticotimes.net'], 24, 'extra'],
   ['batimes', 'Buenos Aires Times (Аргентина)', 'Лат. Америка', 'rss', ['https://www.batimes.com.ar/feed', 'gnews:batimes.com.ar'], 24, 'extra'],
   ['riotimes', 'The Rio Times (Бразилія, Пд. Америка)', 'Лат. Америка', 'rss', ['https://www.riotimesonline.com/feed/', 'gnews:riotimesonline.com'], 24, 'main'],
-  ['lareports', 'Latin America Reports (Колумбія, Венесуела, Анди)', 'Лат. Америка', 'rss', ['https://latinamericareports.com/feed/', 'gnews:latinamericareports.com'], 24, 'extra'],
+  ['lareports', 'Latin America Reports (Колумбія, Венесуела, Анди)', 'Лат. Америка', 'rss', ['https://latinamericareports.com/feed/', 'gnews:latinamericareports.com'], 72, 'extra'],
   ['ocmedia', 'OC Media (Кавказ)', 'Кавказ і Ц. Азія', 'rss', ['https://oc-media.org/feed/', 'gnews:oc-media.org'], 48, 'main'], /* v109 (01.11, Роман): Кавказ і Центральна Азія */
   ['eurasianet', 'Eurasianet (Кавказ і Ц. Азія)', 'Кавказ і Ц. Азія', 'rss', ['https://eurasianet.org/rss.xml', 'gnews:eurasianet.org'], 48, 'main'],
   ['cnbc', 'CNBC (ринки)', 'Ринки і макро', 'rss', 'https://www.cnbc.com/id/100003114/device/rss/rss.html', 12, 'main'],

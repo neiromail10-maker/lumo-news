@@ -69,6 +69,14 @@ const FEEDS = [
   ['straitstimes', 'The Straits Times (Азія)', 'Азія', 'rss', 'https://www.straitstimes.com/news/asia/rss.xml', 12, 'main'],
   ['hindustan', 'Hindustan Times (світ)', 'Світ', 'rss', 'https://www.hindustantimes.com/feeds/rss/world-news/rssfeed.xml', 12, 'extra'], // 21.10 аудит: це здебільшого США/таблоїд, не Азія
   /* v105 (31.10, Роман): прибрано — мало користі за статистикою 96 год / 5 вижимок: ['nprus', 'NPR (США)', 'Пн. Америка', 'rss', 'https://feeds.… */
+  /* v111 (01.11, Роман): Південно-Східна Азія і Японія — щільніше покриття */
+  ['thediplomat', 'The Diplomat (Азія-Пацифік)', 'Азія', 'rss', ['https://thediplomat.com/feed/', 'gnews:thediplomat.com'], 24, 'main'],
+  ['nikkeiasia', 'Nikkei Asia', 'Азія', 'rss', ['gnews:asia.nikkei.com'], 24, 'main'],
+  ['kyodo', 'Kyodo News (Японія)', 'Азія', 'rss', ['https://english.kyodonews.net/rss/all.xml', 'gnews:english.kyodonews.net'], 24, 'main'],
+  ['vnexpress', 'VnExpress International (В\'єтнам)', 'Азія', 'rss', ['https://e.vnexpress.net/rss/news.rss', 'gnews:e.vnexpress.net'], 24, 'extra'],
+  ['bangkokpost', 'Bangkok Post (Таїланд)', 'Азія', 'rss', ['https://www.bangkokpost.com/rss/data/topstories.xml', 'gnews:bangkokpost.com'], 24, 'extra'],
+  ['rappler', 'Rappler (Філіппіни)', 'Азія', 'rss', ['https://www.rappler.com/feed/', 'gnews:rappler.com'], 24, 'extra'],
+  ['irrawaddy', 'The Irrawaddy (М\'янма)', 'Азія', 'rss', ['https://www.irrawaddy.com/feed', 'gnews:irrawaddy.com'], 48, 'extra'],
   ['ocmedia', 'OC Media (Кавказ)', 'Кавказ і Ц. Азія', 'rss', ['https://oc-media.org/feed/', 'gnews:oc-media.org'], 48, 'main'], /* v109 (01.11, Роман): Кавказ і Центральна Азія */
   ['eurasianet', 'Eurasianet (Кавказ і Ц. Азія)', 'Кавказ і Ц. Азія', 'rss', ['https://eurasianet.org/rss.xml', 'gnews:eurasianet.org'], 48, 'main'],
   ['cnbc', 'CNBC (ринки)', 'Ринки і макро', 'rss', 'https://www.cnbc.com/id/100003114/device/rss/rss.html', 12, 'main'],

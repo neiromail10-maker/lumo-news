@@ -89,6 +89,8 @@ const FEEDS = [
   ['ticotimes', 'Tico Times (Центральна Америка)', 'Лат. Америка', 'rss', ['https://ticotimes.net/feed', 'gnews:ticotimes.net'], 24, 'extra'],
   ['batimes', 'Buenos Aires Times (Аргентина)', 'Лат. Америка', 'rss', ['https://www.batimes.com.ar/feed', 'gnews:batimes.com.ar'], 24, 'extra'],
   ['riotimes', 'The Rio Times (Бразилія, Пд. Америка)', 'Лат. Америка', 'rss', ['https://www.riotimesonline.com/feed/', 'gnews:riotimesonline.com'], 24, 'main'],
+  ['reutersam', 'Reuters (Америки)', 'Лат. Америка', 'rss', ['gnews:reuters.com/world/americas'], 24, 'main'],
+  ['elpaisen', 'El País English (Лат. Америка, Іспанія)', 'Лат. Америка', 'rss', ['https://feeds.elpais.com/mrss-s/pages/ep/site/english.elpais.com/portada', 'gnews:english.elpais.com'], 24, 'extra'],
   ['lareports', 'Latin America Reports (Колумбія, Венесуела, Анди)', 'Лат. Америка', 'rss', ['https://latinamericareports.com/feed/', 'gnews:latinamericareports.com'], 72, 'extra'],
   ['ocmedia', 'OC Media (Кавказ)', 'Кавказ і Ц. Азія', 'rss', ['https://oc-media.org/feed/', 'gnews:oc-media.org'], 48, 'main'], /* v109 (01.11, Роман): Кавказ і Центральна Азія */
   ['eurasianet', 'Eurasianet (Кавказ і Ц. Азія)', 'Кавказ і Ц. Азія', 'rss', ['https://eurasianet.org/rss.xml', 'gnews:eurasianet.org'], 48, 'main'],

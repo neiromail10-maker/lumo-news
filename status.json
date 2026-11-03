@@ -1,0 +1,422 @@
+{
+ "updated": "2026-11-03T16:34:34.995Z",
+ "ms": 8538,
+ "items": 8035,
+ "released": 133,
+ "feeds": {
+  "total": 68,
+  "ok": 50,
+  "warn": 18,
+  "fail": []
+ },
+ "perFeed": [
+  {
+   "id": "ki",
+   "status": "ok",
+   "kept": 47,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "up",
+   "status": "warn",
+   "kept": 20,
+   "why": "покриває лише 27% доби"
+  },
+  {
+   "id": "ukrinform",
+   "status": "warn",
+   "kept": 30,
+   "why": "покриває лише 42% доби"
+  },
+  {
+   "id": "deepstate",
+   "status": "ok",
+   "kept": 4,
+   "why": ""
+  },
+  {
+   "id": "euronews",
+   "status": "warn",
+   "kept": 43,
+   "why": "покриває лише 34% доби"
+  },
+  {
+   "id": "aljazeera",
+   "status": "warn",
+   "kept": 14,
+   "why": "покриває лише 23% доби"
+  },
+  {
+   "id": "mt",
+   "status": "ok",
+   "kept": 15,
+   "why": ""
+  },
+  {
+   "id": "oilprice",
+   "status": "ok",
+   "kept": 15,
+   "why": ""
+  },
+  {
+   "id": "africanews",
+   "status": "ok",
+   "kept": 37,
+   "why": ""
+  },
+  {
+   "id": "mercopress",
+   "status": "ok",
+   "kept": 5,
+   "why": ""
+  },
+  {
+   "id": "fxstreet",
+   "status": "ok",
+   "kept": 77,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "investing",
+   "status": "warn",
+   "kept": 7,
+   "why": "покриває лише 1% доби"
+  },
+  {
+   "id": "fed",
+   "status": "ok",
+   "kept": 0,
+   "why": ""
+  },
+  {
+   "id": "ecb",
+   "status": "ok",
+   "kept": 1,
+   "why": ""
+  },
+  {
+   "id": "ffcal",
+   "status": "ok",
+   "kept": 34,
+   "why": ""
+  },
+  {
+   "id": "fxcal",
+   "status": "ok",
+   "kept": 142,
+   "why": ""
+  },
+  {
+   "id": "usgs",
+   "status": "warn",
+   "kept": 0,
+   "why": "стрічка застигла: 1 старих новин"
+  },
+  {
+   "id": "coindesk",
+   "status": "ok",
+   "kept": 25,
+   "why": ""
+  },
+  {
+   "id": "theblock",
+   "status": "ok",
+   "kept": 15,
+   "why": ""
+  },
+  {
+   "id": "decrypt",
+   "status": "ok",
+   "kept": 22,
+   "why": ""
+  },
+  {
+   "id": "cointelegraph",
+   "status": "ok",
+   "kept": 29,
+   "why": ""
+  },
+  {
+   "id": "techcrunch",
+   "status": "ok",
+   "kept": 17,
+   "why": ""
+  },
+  {
+   "id": "mee",
+   "status": "ok",
+   "kept": 69,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "almonitor",
+   "status": "warn",
+   "kept": 20,
+   "why": "покриває лише 18% доби"
+  },
+  {
+   "id": "markettwits",
+   "status": "ok",
+   "kept": 199,
+   "why": ""
+  },
+  {
+   "id": "financialjuice",
+   "status": "ok",
+   "kept": 200,
+   "why": ""
+  },
+  {
+   "id": "walterbloomberg",
+   "status": "ok",
+   "kept": 108,
+   "why": ""
+  },
+  {
+   "id": "tass",
+   "status": "warn",
+   "kept": 100,
+   "why": "покриває лише 37% доби"
+  },
+  {
+   "id": "interfax",
+   "status": "warn",
+   "kept": 24,
+   "why": "покриває лише 7% доби"
+  },
+  {
+   "id": "axios",
+   "status": "ok",
+   "kept": 27,
+   "why": ""
+  },
+  {
+   "id": "ap",
+   "status": "ok",
+   "kept": 78,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "reuters",
+   "status": "ok",
+   "kept": 98,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "bbc",
+   "status": "ok",
+   "kept": 18,
+   "why": ""
+  },
+  {
+   "id": "guardian",
+   "status": "ok",
+   "kept": 29,
+   "why": ""
+  },
+  {
+   "id": "dw",
+   "status": "ok",
+   "kept": 26,
+   "why": ""
+  },
+  {
+   "id": "politico",
+   "status": "warn",
+   "kept": 7,
+   "why": "покриває лише 46% доби"
+  },
+  {
+   "id": "france24",
+   "status": "warn",
+   "kept": 12,
+   "why": "покриває лише 18% доби"
+  },
+  {
+   "id": "toi",
+   "status": "ok",
+   "kept": 78,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "scmp",
+   "status": "warn",
+   "kept": 49,
+   "why": "покриває лише 42% доби"
+  },
+  {
+   "id": "cna",
+   "status": "warn",
+   "kept": 15,
+   "why": "покриває лише 20% доби"
+  },
+  {
+   "id": "straitstimes",
+   "status": "ok",
+   "kept": 50,
+   "why": ""
+  },
+  {
+   "id": "pbs",
+   "status": "warn",
+   "kept": 20,
+   "why": "покриває лише 9% доби"
+  },
+  {
+   "id": "cbc",
+   "status": "ok",
+   "kept": 17,
+   "why": ""
+  },
+  {
+   "id": "meduza",
+   "status": "ok",
+   "kept": 30,
+   "why": ""
+  },
+  {
+   "id": "thediplomat",
+   "status": "ok",
+   "kept": 19,
+   "why": ""
+  },
+  {
+   "id": "nikkeiasia",
+   "status": "ok",
+   "kept": 42,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "kyodo",
+   "status": "ok",
+   "kept": 54,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "vnexpress",
+   "status": "ok",
+   "kept": 15,
+   "why": ""
+  },
+  {
+   "id": "bangkokpost",
+   "status": "ok",
+   "kept": 10,
+   "why": ""
+  },
+  {
+   "id": "rappler",
+   "status": "warn",
+   "kept": 9,
+   "why": "покриває лише 20% доби"
+  },
+  {
+   "id": "irrawaddy",
+   "status": "ok",
+   "kept": 8,
+   "why": ""
+  },
+  {
+   "id": "thehindu",
+   "status": "warn",
+   "kept": 60,
+   "why": "покриває лише 4% доби"
+  },
+  {
+   "id": "dawn",
+   "status": "ok",
+   "kept": 27,
+   "why": ""
+  },
+  {
+   "id": "dailystar",
+   "status": "ok",
+   "kept": 44,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "premiumtimes",
+   "status": "warn",
+   "kept": 14,
+   "why": "покриває лише 15% доби"
+  },
+  {
+   "id": "news24",
+   "status": "ok",
+   "kept": 86,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "ahram",
+   "status": "ok",
+   "kept": 49,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "eastafrican",
+   "status": "ok",
+   "kept": 4,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "mexnews",
+   "status": "ok",
+   "kept": 6,
+   "why": ""
+  },
+  {
+   "id": "ticotimes",
+   "status": "ok",
+   "kept": 9,
+   "why": ""
+  },
+  {
+   "id": "batimes",
+   "status": "ok",
+   "kept": 9,
+   "why": ""
+  },
+  {
+   "id": "riotimes",
+   "status": "warn",
+   "kept": 10,
+   "why": "покриває лише 11% доби"
+  },
+  {
+   "id": "reutersam",
+   "status": "ok",
+   "kept": 12,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "elpaisen",
+   "status": "ok",
+   "kept": 16,
+   "why": ""
+  },
+  {
+   "id": "lareports",
+   "status": "ok",
+   "kept": 2,
+   "why": ""
+  },
+  {
+   "id": "ocmedia",
+   "status": "ok",
+   "kept": 16,
+   "why": ""
+  },
+  {
+   "id": "eurasianet",
+   "status": "ok",
+   "kept": 2,
+   "why": "через Google News (стрічка сайту недоступна)"
+  },
+  {
+   "id": "cnbc",
+   "status": "ok",
+   "kept": 30,
+   "why": ""
+  }
+ ]
+}
